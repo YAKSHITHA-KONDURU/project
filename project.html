@@ -1,330 +1,83 @@
-/*
-Single-file React app (src/App.jsx) — Tailwind-ready
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Forms</title>
 
-How to use:
-1. Create a new React project (Vite recommended):
-   npm create vite@latest my-app --template react
-   cd my-app
-2. Install dependencies and Tailwind CSS (follow Tailwind + Vite/CRA guide):
-   npm install
-   (follow https://tailwindcss.com/docs/guides/vite to configure Tailwind)
-3. Replace src/App.jsx with this file's content, and ensure index.css includes Tailwind directives.
-4. Run: npm run dev (or npm start for CRA)
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f2f2f2;
+        padding: 20px;
+    }
 
-Notes:
-- This is a single-file, self-contained demo with mock data.
-- Replace mock images/strings with real data or hook to an API/backend as needed.
-*/
+    .form-box {
+        width: 350px;
+        margin: 20px auto;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
 
-import React, { useState, useEffect } from "react";
+    .form-box h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
 
-// Simple mock product data (replace with API calls in production)
-const MOCK_PRODUCTS = [
-  {
-    id: "p1",
-    name: "Handwoven Tribal Basket",
-    price: 499,
-    origin: "Region A",
-    image: "https://picsum.photos/seed/basket/520/360",
-    description:
-      "Handwoven basket made from locally harvested fibers. Each piece carries tribal motifs and story-telling patterns.",
-  },
-  {
-    id: "p2",
-    name: "Natural Dye Stole",
-    price: 899,
-    origin: "Region B",
-    image: "https://picsum.photos/seed/stole/520/360",
-    description:
-      "Silk-cotton stole dyed with natural plant-based dyes. Soft, breathable and ethically crafted.",
-  },
-  {
-    id: "p3",
-    name: "Terracotta Tea Set",
-    price: 1299,
-    origin: "Region C",
-    image: "https://picsum.photos/seed/terracotta/520/360",
-    description:
-      "Hand-molded terracotta tea set with a rustic glaze. Fired in small village kilns by artisans.",
-  },
-  {
-    id: "p4",
-    name: "Beaded Necklace",
-    price: 299,
-    origin: "Region D",
-    image: "https://picsum.photos/seed/beads/520/360",
-    description:
-      "Intricately beaded necklace using traditional patterns. Lightweight and vibrant.",
-  },
-];
+    .form-box input {
+        width: 100%;
+        padding: 10px;
+        margin: 8px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
 
-function Header({ onSearch, cartCount }) {
-  return (
-    <header className="bg-white shadow-md sticky top-0 z-40">
-      <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between gap-4">
-        <div className="flex items-center gap-3">
-          <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center text-white font-bold text-lg">HM</div>
-          <div>
-            <h1 className="text-lg font-semibold">HandiMarket</h1>
-            <p className="text-xs text-gray-500">Promoting tribal value-added handicrafts</p>
-          </div>
-        </div>
+    .form-box button {
+        width: 100%;
+        padding: 10px;
+        background: black;
+        color: white;
+        cursor: pointer;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        margin-top: 10px;
+    }
 
-        <div className="flex-1 max-w-lg">
-          <input
-            onChange={(e) => onSearch(e.target.value)}
-            placeholder="Search products, region or craft..."
-            className="w-full border rounded-lg px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-emerald-300"
-          />
-        </div>
+    hr {
+        margin: 40px 0;
+        border: 1px solid #ddd;
+    }
+</style>
 
-        <div className="flex items-center gap-4">
-          <button className="text-sm px-3 py-2 border rounded-md hover:bg-gray-50">Explore</button>
-          <div className="relative">
-            <button className="px-3 py-2 bg-emerald-600 text-white rounded-md">Cart</button>
-            {cartCount > 0 && (
-              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">{cartCount}</span>
-            )}
-          </div>
-        </div>
-      </div>
-    </header>
-  );
-}
+</head>
+<body>
 
-function Hero({ onExplore }) {
-  return (
-    <section className="bg-gradient-to-r from-emerald-50 to-white py-16">
-      <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-        <div>
-          <h2 className="text-4xl md:text-5xl font-extrabold leading-tight">Promoting Value-Added Handicrafts to Support Tribal People</h2>
-          <p className="mt-4 text-gray-700 max-w-xl">A marketplace that connects artisans directly to customers, preserves cultural heritage and improves livelihoods by adding sustainable value to handcrafted goods.</p>
+<!-- LOGIN FORM -->
+<div class="form-box">
+    <h2>Login Form</h2>
+    <form>
+        <input type="email" placeholder="Email" required>
+        <input type="password" placeholder="Password" required>
+        <button type="submit">Login</button>
+    </form>
+</div>
 
-          <div className="mt-6 flex gap-3">
-            <button onClick={() => onExplore()} className="px-6 py-3 bg-emerald-600 text-white rounded-lg shadow">Explore Products</button>
-            <a href="#about" className="px-6 py-3 border rounded-lg">Learn more</a>
-          </div>
+<hr>
 
-          <div className="mt-6 text-sm text-gray-500">Featured categories: Weaving · Natural dye · Clay · Beadwork</div>
-        </div>
+<!-- REGISTRATION FORM -->
+<div class="form-box">
+    <h2>Register Form</h2>
+    <form>
+        <input type="text" placeholder="Username" required>
+        <input type="email" placeholder="Email" required>
+        <input type="password" placeholder="Password" required>
+        <button type="submit">Register</button>
+    </form>
+</div>
 
-        <div className="flex justify-center">
-          <div className="w-full max-w-md rounded-2xl overflow-hidden shadow-lg border">
-            <img alt="hero" src="https://picsum.photos/seed/herohandicraft/800/520" className="object-cover w-full h-72" />
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
+</body>
+</html>
 
-function ProductCard({ product, onOpen, onAdd }) {
-  return (
-    <div className="bg-white rounded-2xl shadow-sm p-4 hover:shadow-lg transition-shadow">
-      <div className="rounded-lg overflow-hidden">
-        <img src={product.image} alt={product.name} className="object-cover w-full h-44" />
-      </div>
-      <div className="mt-3">
-        <h3 className="font-semibold">{product.name}</h3>
-        <div className="text-sm text-gray-500">{product.origin}</div>
-        <div className="mt-2 flex items-center justify-between">
-          <div className="text-lg font-bold">₹{product.price}</div>
-          <div className="flex gap-2">
-            <button onClick={() => onOpen(product)} className="px-3 py-1 text-sm border rounded-md">Details</button>
-            <button onClick={() => onAdd(product)} className="px-3 py-1 bg-emerald-600 text-white rounded-md text-sm">Add</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function ProductList({ products, onOpen, onAdd }) {
-  return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      {products.map((p) => (
-        <ProductCard key={p.id} product={p} onOpen={onOpen} onAdd={onAdd} />
-      ))}
-    </div>
-  );
-}
-
-function ProductModal({ product, onClose, onAdd }) {
-  if (!product) return null;
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
-      <div className="bg-white w-full max-w-2xl rounded-2xl p-6 shadow-2xl">
-        <div className="flex gap-6">
-          <img src={product.image} alt={product.name} className="w-48 h-48 object-cover rounded-lg" />
-          <div className="flex-1">
-            <h3 className="text-2xl font-bold">{product.name}</h3>
-            <div className="text-sm text-gray-500 mt-1">Origin: {product.origin}</div>
-            <p className="mt-4 text-gray-700">{product.description}</p>
-            <div className="mt-6 flex items-center justify-between">
-              <div className="text-2xl font-bold">₹{product.price}</div>
-              <div className="flex gap-3">
-                <button onClick={() => { onAdd(product); onClose(); }} className="px-4 py-2 bg-emerald-600 text-white rounded-lg">Add to cart</button>
-                <button onClick={onClose} className="px-4 py-2 border rounded-lg">Close</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Footer() {
-  return (
-    <footer className="bg-gray-50 border-t mt-12">
-      <div className="max-w-6xl mx-auto px-4 py-8 text-sm text-gray-600 flex flex-col md:flex-row justify-between gap-4">
-        <div>
-          <div className="font-semibold">HandiMarket</div>
-          <div>Connecting artisans to conscious customers.</div>
-        </div>
-        <div className="flex gap-6">
-          <div>
-            <div className="font-medium">Support</div>
-            <div className="text-gray-500">help@handimarket.example</div>
-          </div>
-          <div>
-            <div className="font-medium">Policy</div>
-            <div className="text-gray-500">Privacy · Terms</div>
-          </div>
-        </div>
-      </div>
-    </footer>
-  );
-}
-
-function SellerDashboard({ onAddProduct }) {
-  const [name, setName] = useState("");
-  const [price, setPrice] = useState(0);
-  const [origin, setOrigin] = useState("");
-  const [image, setImage] = useState("");
-
-  function submit(e) {
-    e.preventDefault();
-    if (!name || !price) return;
-    const newProduct = {
-      id: `p_${Date.now()}`,
-      name,
-      price: Number(price),
-      origin,
-      image: image || `https://picsum.photos/seed/${Date.now()}/520/360`,
-      description: "Seller-added product",
-    };
-    onAddProduct(newProduct);
-    setName("");
-    setPrice(0);
-    setOrigin("");
-    setImage("");
-  }
-
-  return (
-    <div className="bg-white rounded-2xl p-6 shadow-sm">
-      <h3 className="text-lg font-semibold">Seller Dashboard (Demo)</h3>
-      <p className="text-sm text-gray-500">Add a product (demo only). In production this will be a secure seller area.</p>
-      <form onSubmit={submit} className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-3">
-        <input value={name} onChange={(e) => setName(e.target.value)} placeholder="Product name" className="border rounded-lg px-3 py-2" />
-        <input value={price} onChange={(e) => setPrice(e.target.value)} placeholder="Price (₹)" type="number" className="border rounded-lg px-3 py-2" />
-        <input value={origin} onChange={(e) => setOrigin(e.target.value)} placeholder="Origin / Region" className="border rounded-lg px-3 py-2" />
-        <input value={image} onChange={(e) => setImage(e.target.value)} placeholder="Image URL (optional)" className="border rounded-lg px-3 py-2" />
-        <div className="md:col-span-2 flex justify-end">
-          <button type="submit" className="px-4 py-2 bg-emerald-600 text-white rounded-lg">Add Product</button>
-        </div>
-      </form>
-    </div>
-  );
-}
-
-export default function App() {
-  const [products, setProducts] = useState(MOCK_PRODUCTS);
-  const [query, setQuery] = useState("");
-  const [selected, setSelected] = useState(null);
-  const [cart, setCart] = useState([]);
-
-  useEffect(() => {
-    const saved = localStorage.getItem("hm_cart");
-    if (saved) setCart(JSON.parse(saved));
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem("hm_cart", JSON.stringify(cart));
-  }, [cart]);
-
-  function handleAdd(product) {
-    setCart((c) => [...c, product]);
-  }
-
-  function handleSearch(q) {
-    setQuery(q);
-  }
-
-  function addProductFromSeller(p) {
-    setProducts((prev) => [p, ...prev]);
-  }
-
-  const filtered = products.filter((p) => {
-    if (!query) return true;
-    const q = query.toLowerCase();
-    return p.name.toLowerCase().includes(q) || p.origin.toLowerCase().includes(q) || p.description.toLowerCase().includes(q);
-  });
-
-  return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 text-gray-800">
-      <Header onSearch={handleSearch} cartCount={cart.length} />
-
-      <main className="max-w-6xl mx-auto px-4">
-        <Hero onExplore={() => window.scrollTo({ top: 600, behavior: "smooth" })} />
-
-        <section id="about" className="mt-12">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="md:col-span-2">
-              <div className="flex items-center justify-between">
-                <h2 className="text-2xl font-bold">Featured Products</h2>
-                <div className="text-sm text-gray-500">{filtered.length} items</div>
-              </div>
-
-              <div className="mt-6">
-                <ProductList products={filtered} onOpen={(p) => setSelected(p)} onAdd={handleAdd} />
-              </div>
-            </div>
-
-            <aside>
-              <SellerDashboard onAddProduct={addProductFromSeller} />
-
-              <div className="mt-6 bg-white rounded-2xl p-4 shadow-sm">
-                <h4 className="font-semibold">Cart summary</h4>
-                <div className="text-sm text-gray-600 mt-2">Items: {cart.length}</div>
-                <div className="mt-4">
-                  <button onClick={() => alert('Checkout demo — integrate payment gateway') } className="w-full px-4 py-2 bg-emerald-600 text-white rounded-lg">Checkout</button>
-                </div>
-              </div>
-
-              <div className="mt-6 bg-white rounded-2xl p-4 shadow-sm">
-                <h4 className="font-semibold">Why this matters</h4>
-                <p className="text-sm text-gray-600 mt-2">Supporting direct trade increases artisan income, preserves traditional skills and ensures transparent pricing to tribal communities.</p>
-              </div>
-            </aside>
-          </div>
-        </section>
-
-        <section className="mt-12">
-          <div className="bg-emerald-600 text-white rounded-2xl p-8">
-            <h3 className="text-xl font-bold">Join as an artisan or seller</h3>
-            <p className="mt-2">We are building systems to help artisans list products, access micro-finance, and learn value addition techniques.</p>
-            <div className="mt-4 flex gap-3">
-              <button className="px-4 py-2 bg-white text-emerald-600 rounded-lg">Start listing</button>
-              <button className="px-4 py-2 border rounded-lg">Learn about impact</button>
-            </div>
-          </div>
-        </section>
-
-        <ProductModal product={selected} onClose={() => setSelected(null)} onAdd={handleAdd} />
-      </main>
-
-      <Footer />
-    </div>
-  );
-}
